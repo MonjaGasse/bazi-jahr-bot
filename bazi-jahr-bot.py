@@ -27,7 +27,7 @@ sys.excepthook = log_exception
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("Start-Befehl empfangen!")
     await update.message.reply_text(
-        "🌕✨ <i>Willkommen, Reisende...</i>\n\n" "<b>Sende mir dein Geburtsdatum</b> im Format <code>TT.MM.JJJJ, HH:MM</code>\n"  "(z.B. <code>09.12.1982, 14:50</code>)\n\n""🔮 <i>Ich werde für dich in die Bazi-Welt blicken...</i>",
+        "🌕✨ <i>Herzlich Willkommen.</i>\n\n" "<b>Sende mir dein Geburtsdatum</b> im Format <code>TT.MM.JJJJ, HH:MM</code>\n"  "(z.B. <code>09.12.1982, 14:50</code>)\n\n""🔮 <i>Ich werde für dich in die Bazi-Welt blicken...</i>",
         parse_mode=ParseMode.HTML
     )
 
@@ -174,13 +174,17 @@ def get_chinese_elements(year):
 async def handle_birthday(update: Update, context: ContextTypes.DEFAULT_TYPE):
     birth_date = update.message.text
     print(f"Empfangenes Geburtsdatum: {birth_date}")
-    await update.message.reply_text(f"Geburtsdatum erhalten: {birth_date}. Jetzt wird dein Bazi Jahr gelesen...")
+    await update.message.reply_text(f" 🎉✨ **Geburtsdatum erhalten:** {birth_date}. "🌟 Dein Bazi-Abenteuer beginnt jetzt! 🌟\n"
+            "🔮 Lass uns deine **Jahressäule** entschlüsseln und die **magischen Geheimnisse** deines Lebens ergründen...\n"
+            "🧘‍♀️ Schließe kurz deine Augen, atme tief ein und spüre, wie sich die Weisheit des Universums entfaltet! 🌌")
 
 
     chinese_year = convert_to_chinese_year(birth_date)
     print(f"Chinesisches Jahr: {chinese_year}") # Debugging
     if not chinese_year:
-        await update.message.reply_text("Das Datum ist ungültig. Bitte stelle sicher, dass es im Format 'TT.MM.JJJJ, HH:MM' ist.")
+        await update.message.reply_text("❌ Oh-oh! Das Geburtsdatum scheint nicht korrekt formatiert zu sein. 🙈\n"
+            "Bitte gib dein Geburtsdatum im Format **DD.MM.JJJJ** ein, damit wir die Reise starten können. 🌱"
+        )
         return
 
     heavenly_stem, earthly_branch, description = get_chinese_elements(chinese_year)
