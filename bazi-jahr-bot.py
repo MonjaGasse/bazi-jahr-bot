@@ -7,6 +7,7 @@ import traceback
 import os
 import asyncio
 from telegram.constants import ParseMode
+from telegram.ext import ContextTypes
 
 # Logging
 logging.basicConfig(
